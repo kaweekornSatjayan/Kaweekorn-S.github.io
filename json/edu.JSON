@@ -1,0 +1,34 @@
+[
+    {
+        "title": "Gold Medal, SCiUS Forum",
+        "year":"2024",
+        "subtitle": "SCiUS Forum 14th, Thammasat University, Rangsit",
+        "image_url": "src/ForumCerti.jpg",
+        "text": "Achieved Gold Medal for a project predicting KDML 105 rice moisture content. Analyzed data with SPSS to build a regression model and deployed it on a web application (HTML, CSS, JS) that predicts moisture based on density.",
+        "link_url": "#project1"
+    },
+     {
+        "title": "POSN computer Camp 2",
+        "year":"2022",
+        "subtitle": "Khonkaen university center",
+        "image_url": "src/camp2-64.jpg",
+        "text": "Developed advanced algorithms and data structures skills using C++, applying problem-solving, algorithm design, programming proficiency, and efficiency in competitive programming. ",
+        "link_url": "#project2"
+    },
+     {
+        "title": "First Place – SATIT Hackathon",
+         "year":"2024",
+        "subtitle": "9ᵗʰ Academic Demonstration, Satit Chulalongkorn School & Faculty of Education, Chulalongkorn University",
+        "image_url": "src/CUD01.jpg",
+        "text": "First Place – SATIT Hackathon: Innovation for Equitable Education by developing and pitching an innovative solution concept designed to provide equitable access to educational resources.",
+        "link_url": "#project1"
+    },
+     {
+        "title": "Participant – Thailand Cyber Top Talent 2024",
+         "year":"2024",
+        "subtitle": "Organized by National Cyber Security Agency & Huawei Technologies (Thailand) Co., Ltd.",
+        "image_url": "src/cybersecured.png",
+        "text": "Achieved a national ranking of 117/770 (Individual) and 90/283 (Team) in a series of cybersecurity and problem-solving challenges.",
+        "link_url": "#project1"
+    }
+]
