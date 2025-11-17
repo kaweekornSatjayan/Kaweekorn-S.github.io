@@ -30,5 +30,37 @@
         "image_url": "src/cybersecured.png",
         "text": "Achieved a national ranking of 117/770 (Individual) and 90/283 (Team) in a series of cybersecurity and problem-solving challenges.",
         "link_url": "#project1"
+    },
+     {
+        "title": "Honorable Mention – Web Page Creation Competition",
+         "year":"2023",
+        "subtitle": "Computer Education KKU Open House 2022, Faculty of Education, Khon Kaen University",
+        "image_url": "src/WEB66.jpg",
+        "text": "Received Honorable Mention for a web page demonstrating proficiency in UI design, content creation, and web development tools.",
+        "link_url": "#project1"
+    },
+     {
+        "title": "Participant – Web Programming Competition 2024",
+         "year":"2024",
+        "subtitle": "2nd Computing Fair 2024, College of Computing, Khon Kaen University ",
+        "image_url": "src/web67.jpg",
+        "text": "Secured 2nd Place by developing and deploying a full-stack web application using HTML, CSS, JavaScript, and an Apache server.",
+        "link_url": "#project1"
+    },
+     {
+        "title": "Participant – High School Level Computer Programming Competition",
+         "year":"2022",
+        "subtitle": "College of Computing, Khon Kaen University",
+        "image_url": "src/codecomp65.jpg",
+        "text": "Practiced programming challenges, focused on algorithmic thinking, coding, and problem-solving.",
+        "link_url": "#project1"
+    },
+     {
+        "title": "Participant – Unihack 2024",
+         "year":"2024",
+        "subtitle": "Chula Tech Startup, Chulalongkorn University",
+        "image_url": "src/unihack-1.png",
+        "text": "Spearheaded the project strategy and pitch deck creation, translating a complex health concept into a clear and compelling value proposition.",
+        "link_url": "#project1"
     }
 ]
