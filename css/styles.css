@@ -1,206 +1,210 @@
-/* Global site styles */
-body
-{
+/* ========================================
+   GLOBAL STYLES
+   ======================================== */
+body {
     background-color: #212529;
     color: #EEEEEE;
+    padding-top: 56px; /* Fixed navbar offset */
 }
-/* Navbar styling */
-#nav{
+
+/* ========================================
+   NAVBAR
+   ======================================== */
+#nav {
     background-color: #343A40;
 }
 
-/* Avatar: responsive square that covers the area */
-.avatar{
-  width: 350px;          /* default size on desktop */
-  max-width: 45vw;       /* shrink on small screens */
-  aspect-ratio: 1 / 1;   /* keep square */
-  overflow: hidden;
-  display: block;
-  /* default object-position: center horizontally, 20% from top (push crop upward)
-     you can override per-element with inline style: `style="--avatar-pos:50% 10%"` */
-  --avatar-pos: 50% 20%;
-}
-
-.avatar img{
-border-radius: 15px;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* crop to fill the square */
-  object-position: var(--avatar-pos);
-  display: block;
-}
-
-/* Optional: center the avatar container and give spacing */
-.avatar-container{
-  display: flex;
-  justify-content: center;
-  margin: 1.5rem 0;
-}
-#introduction
-{
+/* ========================================
+   INTRODUCTION SECTION
+   ======================================== */
+#introduction {
     background-color: #212529;
 }
-#education{
-    background-color: #212529;
-}
-#txt_intro{
+
+#txt_intro {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     text-align: left;
 }
-#txt_intro h1{
-  /* responsive, constrained size: min 28px, ideal 5vw, max 60px */
-  font-size: clamp(28px, 5vw, 60px);
-  margin: 0 0 0.5rem 0;
-  line-height: 1.05;
+
+#txt_intro h1 {
+    font-size: clamp(28px, 5vw, 60px);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.05;
 }
-/* Fallback spacing for fixed navbar (JS will update this dynamically) */
-body{ padding-top: 56px; }
-.row
-{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-}
-.row-center{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.chula-container
-{
-    padding: 2vw;
+
+/* Avatar styling */
+.avatar-container {
     display: flex;
     justify-content: center;
+    margin: 1.5rem 0;
 }
-.chula img{
-  width: 175px;
-  display: block;
+
+.avatar {
+    width: 350px;
+    max-width: 45vw;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: block;
+    --avatar-pos: 50% 20%;
 }
-#Head-Edu
-{
-    margin-bottom: 2vw;
-    font-size: 50px;
-    display: flex;
-    justify-content: center;
+
+.avatar img {
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--avatar-pos);
+    display: block;
 }
-#education
-{
+
+/* ========================================
+   EDUCATION SECTION
+   ======================================== */
+#education {
     padding: 1vw;
     background-color: #212529;
 }
-.scius-container
-{
-    padding: 2vw;
-    display: flex;
-    justify-content: center;
-}
-.scius img{
-  width: 175px;
-  display: block;
-}
 
-/* Mobile responsive: center text on small screens */
-@media (max-width: 768px){
-    #txt_intro{
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-}
-/*
- * ---------------------------------------
- * PROJECT CARD STYLES (ที่สร้างโดย JS)
- * ---------------------------------------
- */
-
-/* 1. สไตล์ "การ์ด" (ตัวกล่อง) 
- * เราจะใช้ "ชั้นที่ 3" (Layer 3) ที่สว่างที่สุด
- */
- #Head-Ex
- {
+#Head-Edu {
     margin-bottom: 2vw;
     font-size: 50px;
     display: flex;
     justify-content: center;
- }
- #experience
- {
-    padding: 3vw;
- }
-#experience .card {
-    background-color: #495057; /* สีเทาที่สว่างกว่า Section */
-    border: none; /* Dark Mode ไม่ค่อยนิยมใช้ขอบ */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /*
-    เพิ่มแอนิเมชันตอน Hover */
 }
 
-/* 2. สไตล์ "หัวข้อ" (Title) */
-#experience .card-title {
-    color: #FFFFFF; /* สีขาว (หรือสีขาวนวล #F8F9FA) */
-    font-weight: bold;
-}
-
-/* 3. สไตล์ "หัวข้อย่อย" (Subtitle)
- * (คุณใช้ text-muted/text-body-secondary ซึ่ง Bootstrap จะจัดการสีให้แล้ว
- * แต่ถ้าอยากคุมเอง ก็ใช้คลาสนี้ครับ)
- */
-#experience .card-subtitle {
-    color: #adb5bd; /* สีเทาอ่อน (สว่างกว่า text-muted ปกติ) */
-}
-
-/* 4. สไตล์ "เนื้อหา" (Text) */
-#experience .card-text {
-    color: #CED4DA; /* สีขาวนวล (อ่านง่าย) */
-}
-
-/* 5. สไตล์ "ลิงก์" (Link)
- * เราจะใช้ "สีไฮไลท์" (Accent Color) ของเรา
- */
-#experience .card-link {
-    justify-content: center;
+.chula-container,
+.scius-container {
+    padding: 2vw;
     display: flex;
-    color: #0D6EFD; /* สีน้ำเงิน (Primary) */
-    text-decoration: none;
-    font-weight: 500;
-}
-#experience .card-link:hover {
-    text-decoration: underline;
+    justify-content: center;
 }
 
-
-/* 6. (BONUS) เอฟเฟกต์ตอน "Hover" (เอาเมาส์ชี้)
- * ทำให้การ์ด "ลอย" (Lift) ขึ้นมา
- */
-#experience .card:hover {
-    transform: translateY(-5px); /* ขยับขึ้น 5px */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* เพิ่มเงาเข้มๆ */
+.chula img,
+.scius img {
+    width: 175px;
+    display: block;
 }
 
-/* Card image: fit the entire image without cropping */
-#experience .card-img-top {
-    object-fit: contain; /* fit entire image without cropping */
-    background-color: #495057; /* light background for transparent images */
+/* ========================================
+   EXPERIENCE SECTION (Project Cards)
+   ======================================== */
+#experience {
+    padding: 3vw;
 }
 
-/* Make all cards equal height */
+#Head-Ex {
+    margin-bottom: 2vw;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+}
+
 #experience .card {
+    background-color: #495057;
+    border: none;
     display: flex;
     flex-direction: column;
-    min-height: 450px;  /* uniform card height */
+    min-height: 450px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Make card body grow to fill remaining space */
+#experience .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+#experience .card-img-top {
+    object-fit: contain;
+    background-color: #495057;
+}
+
 #experience .card-body {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
-/* Modal styling - match card color scheme */
+#experience .card-title {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+#experience .card-subtitle {
+    color: #adb5bd;
+}
+
+#experience .card-text {
+    color: #CED4DA;
+}
+
+#experience .card-link {
+    justify-content: center;
+    display: flex;
+    color: #0D6EFD;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+#experience .card-link:hover {
+    text-decoration: underline;
+}
+
+/* ========================================
+   ACTIVITIES SECTION (Carousel)
+   ======================================== */
+#Act
+{
+    padding:  2vw;
+}
+#Act .act-container {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#Head-Act {
+    margin-bottom: 2vw;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#carouselExampleCaptions {
+    width: 80vw;
+    max-width: 1200px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+#carouselExampleCaptions .carousel-inner {
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#carouselExampleCaptions .carousel-item {
+    height: 100%;
+}
+
+#carouselExampleCaptions img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#carouselExampleCaptions .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* ========================================
+   MODAL
+   ======================================== */
 .modal-content {
     background-color: #495057;
     color: #EEEEEE;
@@ -227,4 +231,99 @@ body{ padding-top: 56px; }
 .modal-footer {
     background-color: #495057;
     border-top-color: #3d4449;
+}
+
+/* ========================================
+   LAYOUT HELPERS
+   ======================================== */
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.row-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+@media (max-width: 768px) {
+    #txt_intro {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    #carouselExampleCaptions {
+        width: 100vw;
+        height: 300px;
+        border-radius: 0;
+    }
+    
+    #carouselExampleCaptions .carousel-inner {
+        border-radius: 0;
+    }
+}
+
+/* ========================================
+   MODAL
+   ======================================== */
+.modal-content {
+    background-color: #495057;
+    color: #EEEEEE;
+}
+
+.modal-header {
+    background-color: #495057;
+    border-bottom-color: #3d4449;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0.8);
+}
+
+.modal-title {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.modal-body {
+    color: #CED4DA;
+}
+
+.modal-footer {
+    background-color: #495057;
+    border-top-color: #3d4449;
+}
+
+/* ========================================
+   LAYOUT HELPERS
+   ======================================== */
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.row-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+@media (max-width: 768px) {
+    #txt_intro {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 }
