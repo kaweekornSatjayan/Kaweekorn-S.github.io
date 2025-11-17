@@ -1,34 +1,27 @@
-// นี่คือโค้ดทั้งหมดในไฟล์ js/main.js
+/* ========================================
+   MAIN JAVASCRIPT
+   Portfolio functionality and interactions
+   ======================================== */
 
+// ========================================
+// 1. NAVBAR LOADING & INITIALIZATION
+// ========================================
 document.addEventListener("DOMContentLoaded", function() {
-    
-    // --- 1. โค้ดดึง Navbar ---
     fetch("navbar.html")
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to load navbar');
-            }
+            if (!response.ok) throw new Error('Failed to load navbar');
             return response.text();
         })
         .then(data => {
             document.getElementById("navbar-placeholder").innerHTML = data;
             highlightActiveNavLink();
-            // adjust body top padding so content is not hidden behind the fixed navbar
             adjustForFixedNavbar();
-            // also adjust on window resize in case navbar height changes
             window.addEventListener('resize', adjustForFixedNavbar);
         })
         .catch(error => console.error('Error loading navbar:', error));
-
-    // --- 2. (เผื่ออนาคต) โค้ดดึง Footer ---
-    // fetch("footer.html")
-    //     .then(response => response.text())
-    //     .then(data => {
-    //         document.getElementById("footer-placeholder").innerHTML = data;
-    //     });
 });
 
-// ฟังก์ชันเพื่อไฮไลท์ลิงก์ navbar ที่เป็นหน้าปัจจุบัน
+// Highlight active navigation link based on current page
 function highlightActiveNavLink() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
@@ -36,38 +29,34 @@ function highlightActiveNavLink() {
     navLinks.forEach(link => {
         link.classList.remove('active');
         const href = link.getAttribute('href');
-        
-        // ตรวจสอบว่า href ตรงกับหน้าปัจจุบัน
         if (href === currentPage || (currentPage === '' && href === 'index.html')) {
             link.classList.add('active');
         }
     });
 }
 
-// ปรับ padding-top ของ body ให้พอเหนือ navbar ที่ fixed-top
-function adjustForFixedNavbar(){
+// Adjust body padding to prevent content from hiding behind fixed navbar
+function adjustForFixedNavbar() {
     const nav = document.querySelector('.navbar.fixed-top');
     if (!nav) return;
-    // อ่านความสูงปัจจุบันของ navbar (รวม border)
     const navHeight = nav.getBoundingClientRect().height;
-    // ใส่ padding-top ให้ body เท่ากับ navbar height
     document.body.style.paddingTop = navHeight + 'px';
 }
-// Load projects from JSON and render cards if a container `#projects-container` exists.
-function loadProjects(){
+// ========================================
+// 2. PROJECT CARDS LOADING
+// ========================================
+function loadProjects() {
     const container = document.getElementById('projects-container');
-    if (!container) return; // nothing to render to
+    if (!container) return;
 
     fetch('json/edu.JSON')
-        .then(r => {
-            if (!r.ok) throw new Error('Failed to load projects JSON');
-            return r.json();
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to load projects JSON');
+            return response.json();
         })
         .then(projects => {
-            // create cards
             let html = '';
             projects.forEach((project, index) => {
-                // Create a short preview of the text (first 80 characters)
                 const textPreview = project.text ? project.text.substring(0, 80) + '...' : '';
                 html += `
                     <div class="col-lg-4 col-md-6 mb-4">
@@ -76,16 +65,20 @@ function loadProjects(){
                             <div class="card-body">
                                 <h5 class="card-title">${project.title}</h5>
                                 ${textPreview ? `<p class="card-text">${textPreview}</p>` : ''}
-                                <button class="btn btn-primary project-modal-btn" data-project-index="${index}" data-project-title="${project.title}" data-project-subtitle="${project.subtitle || ''}" data-project-text="${project.text || ''}" data-project-image="${project.image_url}">See more</button>
+                                <button class="btn btn-primary project-modal-btn" 
+                                        data-project-title="${project.title}" 
+                                        data-project-subtitle="${project.subtitle || ''}" 
+                                        data-project-text="${project.text || ''}" 
+                                        data-project-image="${project.image_url}">
+                                    See more
+                                </button>
                             </div>
                         </div>
                     </div>
                 `;
             });
-            // wrap in a row if desired
             container.innerHTML = `<div class="row">${html}</div>`;
             
-            // Add click handlers to all project modal buttons
             document.querySelectorAll('.project-modal-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     showProjectModal({
@@ -97,14 +90,16 @@ function loadProjects(){
                 });
             });
         })
-        .catch(err => console.error('Error loading projects:', err));
+        .catch(error => console.error('Error loading projects:', error));
 }
 
-// Show project details in a modal
+// ========================================
+// 3. PROJECT MODAL
+// ========================================
 function showProjectModal(project) {
     const modal = document.getElementById('projectModal');
     if (!modal) {
-        console.error('Modal element #projectModal not found');
+        console.error('Modal element not found');
         return;
     }
     
@@ -114,24 +109,84 @@ function showProjectModal(project) {
     const textEl = document.getElementById('projectModalText');
     
     if (!titleEl || !imageEl || !textEl) {
-        console.error('One or more modal elements missing');
+        console.error('Modal elements missing');
         return;
     }
     
     titleEl.textContent = project.title;
+    
     if (subtitleEl && project.subtitle) {
         subtitleEl.textContent = project.subtitle;
         subtitleEl.style.display = 'block';
     } else if (subtitleEl) {
         subtitleEl.style.display = 'none';
     }
+    
     imageEl.src = project.image;
     textEl.textContent = project.text;
     
-    // Show modal using Bootstrap
     const bsModal = new bootstrap.Modal(modal);
     bsModal.show();
 }
 
-// call loadProjects in case a page has a projects container
+// Initialize project loading
 document.addEventListener('DOMContentLoaded', loadProjects);
+
+// ========================================
+// 4. SCROLL FUNCTIONALITY
+// ========================================
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    // Back to top button
+    if (backToTopBtn) {
+        window.addEventListener('scroll', function() {
+            backToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href === '') return;
+            
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                const navHeight = document.querySelector('.navbar.fixed-top')?.offsetHeight || 0;
+                const targetPosition = target.offsetTop - navHeight - 20;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            }
+        });
+    });
+    
+    // Mobile card toggle (show more/less)
+    const showMoreBtn = document.getElementById('showMoreCards');
+    const projectsContainer = document.getElementById('projects-container');
+    
+    if (showMoreBtn && projectsContainer) {
+        showMoreBtn.addEventListener('click', function() {
+            if (projectsContainer.classList.contains('show-all')) {
+                projectsContainer.classList.remove('show-all');
+                showMoreBtn.textContent = 'See More';
+                // Scroll to experience section
+                const experienceSection = document.getElementById('experience');
+                if (experienceSection) {
+                    const navHeight = document.querySelector('.navbar.fixed-top')?.offsetHeight || 0;
+                    window.scrollTo({ 
+                        top: experienceSection.offsetTop - navHeight - 20, 
+                        behavior: 'smooth' 
+                    });
+                }
+            } else {
+                projectsContainer.classList.add('show-all');
+                showMoreBtn.textContent = 'See Less';
+            }
+        });
+    }
+});

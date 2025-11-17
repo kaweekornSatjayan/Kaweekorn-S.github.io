@@ -271,59 +271,79 @@ body {
 }
 
 /* ========================================
-   MODAL
+   FOOTER
    ======================================== */
-.modal-content {
-    background-color: #495057;
+#footer {
+    background-color: #343A40;
     color: #EEEEEE;
+    padding: 3rem 0 2rem;
+    margin-top: 3rem;
 }
 
-.modal-header {
-    background-color: #495057;
-    border-bottom-color: #3d4449;
-}
-
-.modal-header .btn-close {
-    filter: brightness(0.8);
-}
-
-.modal-title {
+#footer h5 {
     color: #FFFFFF;
-    font-weight: bold;
+    margin-bottom: 1rem;
 }
 
-.modal-body {
-    color: #CED4DA;
+#footer .footer-link {
+    color: #ADB5BD;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.modal-footer {
-    background-color: #495057;
-    border-top-color: #3d4449;
+#footer .footer-link:hover {
+    color: #FFFFFF;
+}
+
+#footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Back to Top Button */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    z-index: 999;
+    background-color: #0D6EFD;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+#backToTop:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-5px);
 }
 
 /* ========================================
-   LAYOUT HELPERS
+   MOBILE CARD TOGGLE
    ======================================== */
-.row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
+#showMoreCards {
+    display: none;
+    margin: 2rem auto;
 }
 
-.row-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ========================================
-   RESPONSIVE STYLES
-   ======================================== */
 @media (max-width: 768px) {
-    #txt_intro {
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+    #projects-container .col-lg-4:nth-child(n+3) {
+        display: none;
+    }
+    
+    #projects-container.show-all .col-lg-4 {
+        display: block;
+    }
+    
+    #showMoreCards {
+        display: block;
+    }
+    
+    #showMoreCards.hidden {
+        display: none;
     }
 }
